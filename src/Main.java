@@ -1,25 +1,26 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scr = new Scanner(System.in);
 
+    static ArrayList<Student> students = new ArrayList<Student>();
+    static ArrayList<Coach> coaches = new ArrayList<Coach>();
+    static ArrayList<Classe> classes = new ArrayList<Classe>();
+    static boolean appRunning = true;
+    static char mainManu = 'h';
+    static int subManuChoice;
+    static boolean editing;
+
     public static void main(String[] args) {
-
-        ArrayList<Student> students = new ArrayList<Student>();
-        ArrayList<Coach> coaches = new ArrayList<Coach>();
-        ArrayList<Classe> classes = new ArrayList<Classe>();
-
-
-        boolean appRunning = true;
-        char room = 'h';
-
         while (appRunning) {
-            switch (room){
+            switch (mainManu){
                 case 'h': // initial or home room
                     // show the main list manu
+                    showHeader("home");
                     System.out.println("this is home");
-                    room = showHomeManu();
+                    mainManu = showHomeManu();
                     break;
                 case 'c': // enter classe room
                     System.out.println("this is classe");
@@ -32,7 +33,7 @@ public class Main {
                         // show a list of students belong to this classe
                     break;
                 case 's': // enter student room
-                    System.out.println("this is student");
+                    studentFunc();
                     // show the list of CRUD students
                     break;
                 case 'f': // enter coach room
@@ -63,22 +64,120 @@ public class Main {
             manuChar =  scr.nextLine();
         }
         // force user to enter one of these chars (h,s,f,c)
-        if (manuChar.charAt(0) != 'h' && manuChar.charAt(0) != 'c' && manuChar.charAt(0) != 's' && manuChar.charAt(0) != 'f' && manuChar.charAt(0) != 'q') {
+        while (manuChar.charAt(0) != 'h' && manuChar.charAt(0) != 'c' && manuChar.charAt(0) != 's' && manuChar.charAt(0) != 'f' && manuChar.charAt(0) != 'q') {
             System.out.println("invalid Character please enter one of these (h,c,f,s,q)");
             manuChar =  scr.nextLine();
         }
         return manuChar.charAt(0);
     }
 
+    static void showHeader ( String heading ) {
+        System.out.println("******************************************");
+        System.out.println("******* " + heading.toUpperCase() + " ******");
+        System.out.println("******************************************");
+    }
+
+    static int subManu () {
+
+        try {
+            System.out.println("Please choose a number to select one CRUD operation (1,2,3,4,5)");
+            System.out.println("0 => Quite Student Menu");
+            System.out.println("1 => List all Students");
+            System.out.println("2 => Show a single Student");
+            System.out.println("3 => Add a Student");
+            System.out.println("4 => Update a Student");
+            System.out.println("5 => Delete a Student");
+            subManuChoice = scr.nextInt();
+            scr.nextLine();
+            while (subManuChoice != 1 && subManuChoice != 2 && subManuChoice != 3 && subManuChoice != 4 && subManuChoice != 5 && subManuChoice != 0 ) {
+                System.out.println("Unkown manu Type, please choose from the menu (1,2,3,4,5)");
+                subManuChoice = scr.nextInt();
+                scr.nextLine();
+            }
+            return subManuChoice;
+        }
+        catch ( InputMismatchException e ) {
+            System.out.println("please enter valid number");
+            scr.nextLine();
+            return 6;
+        }
+    }
+
     // CRUD Functions
     // Student
     static public void addStudent () {
-        System.out.println("Enter student's first name ");
-        String firstName = scr.nextLine();
-        System.out.println("Enter student's last name ");
-        String lastName = scr.nextLine();
-        System.out.println("Enter student's email ");
-        String email = scr.nextLine();
+        editing = true;
+        while (editing) {
+            System.out.println("Enter student's first name ");
+            String firstName = scr.nextLine();
+            if (firstName.equals("quite")) {
+                System.out.println("stopped editing");
+                editing = false;
+            } else {
+                System.out.println("Enter student's last name ");
+                String lastName = scr.nextLine();
+                if (lastName.equals("quite")) {
+                    System.out.println("stopped editing");
+                    editing = false;
+                } else {
+                    System.out.println("Enter student's email ");
+                    String email = scr.nextLine();
+                    if (email.equals("quite")) {
+                        System.out.println("stopped editing");
+                        editing = false;
+                    } else {
+                        // create a new student
+                        Student student = new Student(firstName, lastName, email);
+                        // add student to the list
+                        students.add(student);
+                    }
+                }
+            }
+        }
+
+        // get student's information
+//        System.out.println("Enter student's first name ");
+//        String firstName = scr.nextLine();
+//        System.out.println("Enter student's last name ");
+//        String lastName = scr.nextLine();
+//        System.out.println("Enter student's email ");
+//        String email = scr.nextLine();
+//
+//        // create a new instance
+//        Student student = new Student(firstName, lastName, email);
+//        // add student to the list
+//        students.add(student);
+    }
+
+    // Create functionalities for student
+    static void studentFunc () {
+        int menu = subManu();
+        boolean subManuRunning = true;
+
+        while (subManuRunning) {
+            switch (menu) {
+                case 0:
+                    System.out.println("Out of Student Menu");
+                    subManuRunning = false;
+                    mainManu = showHomeManu();
+                    break;
+                case 1:
+                    addStudent();
+                    menu = subManu();
+                    break;
+//                case 2:
+//                    break;
+//                case 3:
+//                    break;
+//                case 4:
+//                    break;
+//                case 5:
+//                    break;
+                case 6:
+                    menu = subManu();
+                    break;
+            }
+        }
 
     }
 }

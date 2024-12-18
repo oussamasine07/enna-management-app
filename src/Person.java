@@ -9,4 +9,6 @@ public abstract class Person {
         this.email = email;
     }
 
+    abstract void showInfo ();
+
 }
