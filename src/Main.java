@@ -134,19 +134,59 @@ public class Main {
                 }
             }
         }
+    }
 
-        // get student's information
-//        System.out.println("Enter student's first name ");
-//        String firstName = scr.nextLine();
-//        System.out.println("Enter student's last name ");
-//        String lastName = scr.nextLine();
-//        System.out.println("Enter student's email ");
-//        String email = scr.nextLine();
-//
-//        // create a new instance
-//        Student student = new Student(firstName, lastName, email);
-//        // add student to the list
-//        students.add(student);
+    static void showStudents () {
+        showHeader("All Students");
+        if ( students.size() == 0) {
+            System.out.println("No Students, Yet");
+        } else {
+            for ( Student student : students) {
+                System.out.println("Fullname: " + student.firstName + " " + student.lastName );
+                System.out.println("Email: " + student.email );
+                System.out.println();
+            }
+        }
+        System.out.println("==============================================");
+        System.out.println("==============================================");
+    }
+
+    static void showSingleStudent () {
+        try {
+            // show single student by id or by name
+            System.out.println("search by by ID or by NAME");
+            System.out.println("1. Search by ID");
+            System.out.println("2. Search by NAME");
+            int search = scr.nextInt();
+            if ( search == 1) {
+                // search by ID
+                System.out.println("Enter student's ID");
+                int id = scr.nextInt();
+                for ( Student student : students ) {
+                   if (student.id == id) {
+                       System.out.println("Fullname: " + student.firstName + " " + student.lastName );
+                       System.out.println("Email: " + student.email );
+                       System.out.println();
+                   }
+                }
+            }
+            if ( search == 2) {
+                // search by NAME
+                System.out.println("Enter student's NAME");
+                String name = scr.nextLine();
+                for ( Student student : students ) {
+                    if (student.firstName == name) {
+                        System.out.println("Fullname: " + student.firstName + " " + student.lastName );
+                        System.out.println("Email: " + student.email );
+                        System.out.println();
+                    }
+                }
+            }
+        }
+        catch ( InputMismatchException e ) {
+            scr.nextLine();
+            showSingleStudent();
+        }
     }
 
     // Create functionalities for student
@@ -162,17 +202,21 @@ public class Main {
                     mainManu = showHomeManu();
                     break;
                 case 1:
+                    showStudents();
+                    menu = subManu();
+                    break;
+                case 2:
+                    showSingleStudent();
+                    menu = subManu();
+                    break;
+                case 3:
                     addStudent();
                     menu = subManu();
                     break;
-//                case 2:
-//                    break;
-//                case 3:
-//                    break;
-//                case 4:
-//                    break;
-//                case 5:
-//                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
                 case 6:
                     menu = subManu();
                     break;
