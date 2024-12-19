@@ -158,10 +158,12 @@ public class Main {
             System.out.println("1. Search by ID");
             System.out.println("2. Search by NAME");
             int search = scr.nextInt();
+            scr.nextLine();
             if ( search == 1) {
                 // search by ID
                 System.out.println("Enter student's ID");
                 int id = scr.nextInt();
+                scr.nextLine();
                 for ( Student student : students ) {
                    if (student.id == id) {
                        System.out.println("Fullname: " + student.firstName + " " + student.lastName );
@@ -175,10 +177,12 @@ public class Main {
                 System.out.println("Enter student's NAME");
                 String name = scr.nextLine();
                 for ( Student student : students ) {
-                    if (student.firstName == name) {
+                    if (student.firstName.equals( name ) || student.lastName.equals( name ) ) {
                         System.out.println("Fullname: " + student.firstName + " " + student.lastName );
                         System.out.println("Email: " + student.email );
                         System.out.println();
+                    } else {
+                        System.out.println("NO Student with this name !!");
                     }
                 }
             }
@@ -187,6 +191,26 @@ public class Main {
             scr.nextLine();
             showSingleStudent();
         }
+    }
+
+    // update a student
+    static void updateStudent( int id ) {
+
+    }
+
+    // delete student
+    static void deleteStudent ( int id ) {
+        int studentID = 0;
+        for ( int i = 0; i < students.size(); i++ ) {
+            if (students.get(i).id == id) {
+                studentID = students.indexOf(students.get(i));
+                break;
+            }
+        }
+        System.out.println("deleting student...");
+        System.out.println("deleting the student with the index of " + studentID );
+        students.remove(studentID);
+        System.out.println("student deleted!!");
     }
 
     // Create functionalities for student
@@ -214,8 +238,14 @@ public class Main {
                     menu = subManu();
                     break;
                 case 4:
+
                     break;
                 case 5:
+                    System.out.println("please enter Student's ID");
+                    int id = scr.nextInt();
+                    scr.nextLine();
+                    deleteStudent( id );
+                    menu = subManu();
                     break;
                 case 6:
                     menu = subManu();
