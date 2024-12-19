@@ -244,6 +244,8 @@ public class Main {
         boolean subManuRunning = true;
         int id;
 
+        Student student = new Student();
+
         while (subManuRunning) {
             switch (menu) {
                 case 0:
@@ -260,7 +262,8 @@ public class Main {
                     menu = subManu();
                     break;
                 case 3:
-                    addStudent();
+                    editing = true;
+                    student.create( editing );
                     menu = subManu();
                     break;
                 case 4:
