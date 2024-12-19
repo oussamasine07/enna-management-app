@@ -13,6 +13,7 @@ public class Main {
     static int subManuChoice;
     static boolean editing;
 
+
     public static void main(String[] args) {
         while (appRunning) {
             switch (mainManu){
@@ -195,7 +196,31 @@ public class Main {
 
     // update a student
     static void updateStudent( int id ) {
+        // get student index
+        Student student = null;
 
+        for ( int i = 0; i < students.size(); i++ ) {
+            if (students.get(i).id == id) {
+                student = students.get(i);
+                break;
+            }
+        }
+
+        if ( student != null ) {
+            System.out.println("Enter First Name :");
+            String firstName = scr.nextLine();
+            System.out.println("Enter Last Name :");
+            String lastName = scr.nextLine();
+            System.out.println("Enter Email :");
+            String email = scr.nextLine();
+            // update here
+            student.firstName = firstName.length() == 0 ? student.firstName : firstName;
+            student.lastName = lastName.length() == 0  ? student.lastName : lastName;
+            student.email = email.length() == 0 ? student.email : email;
+        } else {
+            System.out.println("this ID does not Exists");
+        }
+        // TRY TO APPLY BINARY SEARCH
     }
 
     // delete student
@@ -217,6 +242,7 @@ public class Main {
     static void studentFunc () {
         int menu = subManu();
         boolean subManuRunning = true;
+        int id;
 
         while (subManuRunning) {
             switch (menu) {
@@ -238,11 +264,15 @@ public class Main {
                     menu = subManu();
                     break;
                 case 4:
-
+                    System.out.println("Please enter Student's ID ");
+                    id = scr.nextInt();
+                    scr.nextLine();
+                    updateStudent( id );
+                    menu = subManu();
                     break;
                 case 5:
                     System.out.println("please enter Student's ID");
-                    int id = scr.nextInt();
+                    id = scr.nextInt();
                     scr.nextLine();
                     deleteStudent( id );
                     menu = subManu();

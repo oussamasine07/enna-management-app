@@ -10,7 +10,14 @@ public class Student extends Person {
         this.id = count;
         count++;
     }
+    Student () {
+
+    }
     void showInfo () {
         System.out.println("this student info");
+    }
+
+    void create () {
+
     }
 }

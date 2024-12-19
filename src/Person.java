@@ -9,6 +9,9 @@ public abstract class Person {
         this.email = email;
     }
 
+    Person(){
+
+    }
     abstract void showInfo ();
 
 }
