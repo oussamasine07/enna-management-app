@@ -15,6 +15,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+        Student student = new Student();
         while (appRunning) {
             switch (mainManu){
                 case 'h': // initial or home room
@@ -34,7 +35,7 @@ public class Main {
                         // show a list of students belong to this classe
                     break;
                 case 's': // enter student room
-                    studentFunc();
+                    student.studentFunc( mainManu );
                     // show the list of CRUD students
                     break;
                 case 'f': // enter coach room
@@ -254,11 +255,11 @@ public class Main {
                     mainManu = showHomeManu();
                     break;
                 case 1:
-                    showStudents();
+                    student.list();
                     menu = subManu();
                     break;
                 case 2:
-                    showSingleStudent();
+                    student.show();
                     menu = subManu();
                     break;
                 case 3:
@@ -270,14 +271,14 @@ public class Main {
                     System.out.println("Please enter Student's ID ");
                     id = scr.nextInt();
                     scr.nextLine();
-                    updateStudent( id );
+                    student.update( id );
                     menu = subManu();
                     break;
                 case 5:
                     System.out.println("please enter Student's ID");
                     id = scr.nextInt();
                     scr.nextLine();
-                    deleteStudent( id );
+                    student.delete( id );
                     menu = subManu();
                     break;
                 case 6:
