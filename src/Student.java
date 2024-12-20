@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static int count = 1;
-    public int id;
+    private int id;
     public Classe refClasse;
     public int[] notes;
 
