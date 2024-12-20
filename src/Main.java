@@ -168,7 +168,7 @@ public class Main {
                     System.out.println("please enter Coach's ID");
                     id = scr.nextInt();
                     scr.nextLine();
-                    //coach.delete( id );
+                    coach.delete( id );
                     menu = coach.subManu();
                     break;
                 case 6:

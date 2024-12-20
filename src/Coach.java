@@ -216,19 +216,19 @@ public class Coach extends Person {
         // TRY TO APPLY BINARY SEARCH
     }
 
-//    void delete ( int studentId ) {
-//        int studentIdx = 0;
-//        for ( int i = 0; i < students.size(); i++ ) {
-//            if (students.get(i).id == studentId) {
-//                studentIdx = students.indexOf(students.get(i));
-//                break;
-//            }
-//        }
-//        System.out.println("deleting student...");
-//        System.out.println("deleting the student with the index of " + studentIdx );
-//        students.remove(studentIdx);
-//        System.out.println("student deleted!!");
-//    }
+    void delete ( int coachId ) {
+        int coachIdx = 0;
+        for ( int i = 0; i < coaches.size(); i++ ) {
+            if (coaches.get(i).id == coachId) {
+                coachIdx = coaches.indexOf(coaches.get(i));
+                break;
+            }
+        }
+        System.out.println("deleting coach...");
+        System.out.println("deleting the coach with the index of " + coachIdx );
+        coaches.remove(coachIdx);
+        System.out.println("coach deleted!!");
+    }
 
     // Show sub menu for student class
     int subManu () {
