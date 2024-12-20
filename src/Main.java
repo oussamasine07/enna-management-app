@@ -161,7 +161,7 @@ public class Main {
                     System.out.println("Please enter Coach's ID ");
                     id = scr.nextInt();
                     scr.nextLine();
-                    //coach.update( id );
+                    coach.update( id );
                     menu = coach.subManu();
                     break;
                 case 5:

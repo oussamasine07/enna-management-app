@@ -170,35 +170,52 @@ public class Coach extends Person {
         }
     }
 
-//    void update ( int studenId) {
-//        // get student index
-//        Student student = null;
-//
-//        for ( int i = 0; i < students.size(); i++ ) {
-//            if (students.get(i).id == studenId) {
-//                student = students.get(i);
-//                break;
-//            }
-//        }
-//
-//        if ( student != null ) {
-//            System.out.println("Enter First Name :");
-//            String firstName = scr.nextLine();
-//            System.out.println("Enter Last Name :");
-//            String lastName = scr.nextLine();
-//            System.out.println("Enter Email :");
-//            String email = scr.nextLine();
-//            // update here
-//            student.setFirstName( firstName.length() == 0 ? student.getFirstName() : firstName );
-//            student.setLastName( lastName.length() == 0  ? student.getFirstName() : lastName );
-//            student.setEmail(email.length() == 0 ? student.getEmail() : email);
-//
-//        } else {
-//            System.out.println("this ID does not Exists");
-//        }
-//        // TRY TO APPLY BINARY SEARCH
-//    }
-//
+    void update ( int studenId) {
+        // get coach index
+        Coach coach = null;
+
+        for ( int i = 0; i < coaches.size(); i++ ) {
+            if (coaches.get(i).id == studenId) {
+                coach = coaches.get(i);
+                break;
+            }
+        }
+
+        if ( coach != null ) {
+            while ( true ) {
+                try {
+                    System.out.println("Enter First Name :");
+                    String firstName = scr.nextLine();
+                    System.out.println("Enter Last Name :");
+                    String lastName = scr.nextLine();
+                    System.out.println("Enter Email :");
+                    String email = scr.nextLine();
+                    System.out.println("Enter Specialty: ");
+                    String specialty = scr.nextLine();
+                    System.out.println("Enter Salary: ");
+                    double salary = scr.nextDouble();
+
+                    // update here
+                    coach.setFirstName( firstName.length() == 0 ? coach.getFirstName() : firstName );
+                    coach.setLastName( lastName.length() == 0  ? coach.getFirstName() : lastName );
+                    coach.setEmail(email.length() == 0 ? coach.getEmail() : email);
+                    coach.setSpecialty( specialty.length() == 0 ? coach.getSpecialty() : specialty );
+                    coach.setSalary( salary == 0 ? coach.getSalary() : salary );
+
+                    break;
+
+                }
+                catch ( InputMismatchException e ) {
+                    System.out.println("enter a valid double");
+                    scr.nextLine();
+                }
+            }
+        } else {
+            System.out.println("this ID does not Exists");
+        }
+        // TRY TO APPLY BINARY SEARCH
+    }
+
 //    void delete ( int studentId ) {
 //        int studentIdx = 0;
 //        for ( int i = 0; i < students.size(); i++ ) {
