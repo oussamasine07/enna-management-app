@@ -62,56 +62,58 @@ public class Coach extends Person {
         System.out.println("==============================================");
     }
 
-//    void show () {
-//        try {
-//            // show single student by id or by name
-//            System.out.println("search by by ID or by NAME");
-//            System.out.println("1. Search by ID");
-//            System.out.println("2. Search by NAME");
-//            int search = scr.nextInt();
-//            scr.nextLine();
-//
-//            Student foundStudent = null;
-//
-//            if ( search == 1) {
-//                // search by ID
-//                System.out.println("Enter student's ID");
-//                int id = scr.nextInt();
-//                scr.nextLine();
-//                for ( Student student : students ) {
-//                    if (student.id == id) {
-//                        foundStudent = student;
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            if ( search == 2) {
-//                // search by NAME
-//                System.out.println("Enter student's NAME");
-//                String name = scr.nextLine();
-//                for ( Student student : students ) {
-//                    if (student.getFirstName().equals( name ) || student.getLastName().equals( name ) ) {
-//                        foundStudent = student;
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            if ( foundStudent != null) {
-//                System.out.println("Fullname: " + foundStudent.getFirstName() + " " + foundStudent.getLastName() );
-//                System.out.println("Email: " + foundStudent.getEmail() );
-//                System.out.println();
-//            } else {
-//                System.out.println("un found student");
-//            }
-//        }
-//        catch ( InputMismatchException e ) {
-//            scr.nextLine();
-//            this.show();
-//        }
-//    }
-//
+    void show () {
+        try {
+            // show single student by id or by name
+            System.out.println("search by Coach ID or by NAME");
+            System.out.println("1. Search by ID");
+            System.out.println("2. Search by NAME");
+            int search = scr.nextInt();
+            scr.nextLine();
+
+            Coach foundCoach = null;
+
+            if ( search == 1) {
+                // search by ID
+                System.out.println("Enter Coach's ID");
+                int id = scr.nextInt();
+                scr.nextLine();
+                for ( Coach coach : coaches ) {
+                    if (coach.id == id) {
+                        foundCoach = coach;
+                        break;
+                    }
+                }
+            }
+
+            if ( search == 2) {
+                // search by NAME
+                System.out.println("Enter Coach's NAME");
+                String name = scr.nextLine();
+                for ( Coach coach : coaches ) {
+                    if (coach.getFirstName().equals( name ) || coach.getLastName().equals( name ) ) {
+                        foundCoach = coach;
+                        break;
+                    }
+                }
+            }
+
+            if ( foundCoach != null) {
+                System.out.println("Fullname: " + foundCoach.getFirstName() + " " + foundCoach.getLastName() );
+                System.out.println("Email: " + foundCoach.getEmail() );
+                System.out.println("Spechialty: " + foundCoach.getSpecialty() );
+                System.out.println("Salery: " + foundCoach.getSalary() );
+                System.out.println();
+            } else {
+                System.out.println("un found Coach");
+            }
+        }
+        catch ( InputMismatchException e ) {
+            scr.nextLine();
+            this.show();
+        }
+    }
+
 //    void create ( boolean editing ) {
 //        while (editing) {
 //            System.out.println("Enter student's first name ");

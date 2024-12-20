@@ -149,7 +149,7 @@ public class Main {
                     menu = coach.subManu();
                     break;
                 case 2:
-                    //coach.show();
+                    coach.show();
                     menu = coach.subManu();
                     break;
                 case 3:
