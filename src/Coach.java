@@ -170,12 +170,12 @@ public class Coach extends Person {
         }
     }
 
-    void update ( int studenId) {
+    void update ( int coachId) {
         // get coach index
         Coach coach = null;
 
         for ( int i = 0; i < coaches.size(); i++ ) {
-            if (coaches.get(i).id == studenId) {
+            if (coaches.get(i).id == coachId) {
                 coach = coaches.get(i);
                 break;
             }
