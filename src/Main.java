@@ -55,7 +55,6 @@ public class Main {
         }
     }
 
-    //validate Character it should be one of these (H,C,S,F)
     // show the global manu of the application
     static char showHomeManu () {
         System.out.println("Please choose one of the characters (h,c,s,f)");
@@ -129,6 +128,53 @@ public class Main {
             }
         }
 
+    }
+
+    // create functionality for Coach
+    static void coachFunc () {
+//        int menu = student.subManu();
+//        boolean subManuRunning = true;
+//        int id;
+//
+//        while (subManuRunning) {
+//            switch (menu) {
+//                case 0:
+//                    System.out.println("Out of Student Menu");
+//                    subManuRunning = false;
+//                    mainManu = showHomeManu();
+//                    break;
+//                case 1:
+//                    student.list();
+//                    menu = student.subManu();
+//                    break;
+//                case 2:
+//                    student.show();
+//                    menu = student.subManu();
+//                    break;
+//                case 3:
+//                    editing = true;
+//                    student.create( editing );
+//                    menu = student.subManu();
+//                    break;
+//                case 4:
+//                    System.out.println("Please enter Student's ID ");
+//                    id = scr.nextInt();
+//                    scr.nextLine();
+//                    student.update( id );
+//                    menu = student.subManu();
+//                    break;
+//                case 5:
+//                    System.out.println("please enter Student's ID");
+//                    id = scr.nextInt();
+//                    scr.nextLine();
+//                    student.delete( id );
+//                    menu = student.subManu();
+//                    break;
+//                case 6:
+//                    menu = student.subManu();
+//                    break;
+//            }
+//        }
     }
 }
 
