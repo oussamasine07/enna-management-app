@@ -44,7 +44,7 @@ public class Main {
                     break;
                 case 'f': // enter coach room
                     // CRUD of Coach
-                    System.out.println("this coach");
+                    coachFunc();
                     break;
                 case 'q':
                     System.out.println("Good Bye");
@@ -145,7 +145,7 @@ public class Main {
                     mainManu = showHomeManu();
                     break;
                 case 1:
-                    // coach.list();
+                    coach.list();
                     menu = coach.subManu();
                     break;
                 case 2:
