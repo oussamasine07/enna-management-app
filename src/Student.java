@@ -26,13 +26,14 @@ public class Student extends Person {
 
     }
 
+    // CRUD functionality
     void list () {
         if ( students.size() == 0) {
             System.out.println("No Students, Yet");
         } else {
             for ( Student student : students) {
-                System.out.println("Fullname: " + student.firstName + " " + student.lastName );
-                System.out.println("Email: " + student.email );
+                System.out.println("Fullname: " + student.getFirstName() + " " + student.getLastName() );
+                System.out.println("Email: " + student.getEmail() );
                 System.out.println();
             }
         }
@@ -48,6 +49,9 @@ public class Student extends Person {
             System.out.println("2. Search by NAME");
             int search = scr.nextInt();
             scr.nextLine();
+
+            Student foundStudent = null;
+
             if ( search == 1) {
                 // search by ID
                 System.out.println("Enter student's ID");
@@ -55,25 +59,30 @@ public class Student extends Person {
                 scr.nextLine();
                 for ( Student student : students ) {
                     if (student.id == id) {
-                        System.out.println("Fullname: " + student.firstName + " " + student.lastName );
-                        System.out.println("Email: " + student.email );
-                        System.out.println();
+                        foundStudent = student;
+                        break;
                     }
                 }
             }
+
             if ( search == 2) {
                 // search by NAME
                 System.out.println("Enter student's NAME");
                 String name = scr.nextLine();
                 for ( Student student : students ) {
-                    if (student.firstName.equals( name ) || student.lastName.equals( name ) ) {
-                        System.out.println("Fullname: " + student.firstName + " " + student.lastName );
-                        System.out.println("Email: " + student.email );
-                        System.out.println();
-                    } else {
-                        System.out.println("NO Student with this name !!");
+                    if (student.getFirstName().equals( name ) || student.getLastName().equals( name ) ) {
+                        foundStudent = student;
+                        break;
                     }
                 }
+            }
+
+            if ( foundStudent != null) {
+                System.out.println("Fullname: " + foundStudent.getFirstName() + " " + foundStudent.getLastName() );
+                System.out.println("Email: " + foundStudent.getEmail() );
+                System.out.println();
+            } else {
+                System.out.println("un found student");
             }
         }
         catch ( InputMismatchException e ) {
@@ -131,9 +140,10 @@ public class Student extends Person {
             System.out.println("Enter Email :");
             String email = scr.nextLine();
             // update here
-            student.firstName = firstName.length() == 0 ? student.firstName : firstName;
-            student.lastName = lastName.length() == 0  ? student.lastName : lastName;
-            student.email = email.length() == 0 ? student.email : email;
+            student.setFirstName( firstName.length() == 0 ? student.getFirstName() : firstName );
+            student.setLastName( lastName.length() == 0  ? student.getFirstName() : lastName );
+            student.setEmail(email.length() == 0 ? student.getEmail() : email);
+
         } else {
             System.out.println("this ID does not Exists");
         }
@@ -154,6 +164,7 @@ public class Student extends Person {
         System.out.println("student deleted!!");
     }
 
+    // Show sub menu for student class
     int subManu () {
         try {
             System.out.println("Please choose a number to select one CRUD operation (1,2,3,4,5)");
