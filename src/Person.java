@@ -12,6 +12,6 @@ public abstract class Person {
     Person(){
 
     }
-    abstract void showInfo ();
+
 
 }

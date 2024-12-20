@@ -3,10 +3,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Student extends Person {
+
     static int count = 1;
     public int id;
     public Classe refClasse;
     public int[] notes;
+
     static int subManuChoice;
     static boolean editing;
 
@@ -22,9 +24,6 @@ public class Student extends Person {
     }
     Student () {
 
-    }
-    void showInfo () {
-        System.out.println("this student info");
     }
 
     void list () {
@@ -155,27 +154,6 @@ public class Student extends Person {
         System.out.println("student deleted!!");
     }
 
-    // show the global manu of the application
-    char showHomeManu () {
-        System.out.println("Please choose one of the characters (h,c,s,f)");
-        System.out.println("c => Classe");
-        System.out.println("s => Student");
-        System.out.println("f => Coach");
-        System.out.println("h => Home");
-        String manuChar =  scr.nextLine();
-        // check if the user enters more than 2 chars
-        if ( manuChar.length() > 1) {
-            System.out.println("you entered more that one character, allowed characters (h,c,s,f)");
-            manuChar =  scr.nextLine();
-        }
-        // force user to enter one of these chars (h,s,f,c)
-        while (manuChar.charAt(0) != 'h' && manuChar.charAt(0) != 'c' && manuChar.charAt(0) != 's' && manuChar.charAt(0) != 'f' && manuChar.charAt(0) != 'q') {
-            System.out.println("invalid Character please enter one of these (h,c,f,s,q)");
-            manuChar =  scr.nextLine();
-        }
-        return manuChar.charAt(0);
-    }
-
     int subManu () {
         try {
             System.out.println("Please choose a number to select one CRUD operation (1,2,3,4,5)");
@@ -201,55 +179,6 @@ public class Student extends Person {
         }
     }
 
-    // Create functionalities for student
-    void studentFunc ( char mainManu ) {
-        int menu = subManu();
-        boolean subManuRunning = true;
-        int id;
-
-        Student student = new Student();
-
-        while (subManuRunning) {
-            switch (menu) {
-                case 0:
-                    System.out.println("Out of Student Menu");
-                    subManuRunning = false;
-                    mainManu = this.showHomeManu();
-                    break;
-                case 1:
-                    student.list();
-                    menu = subManu();
-                    break;
-                case 2:
-                    student.show();
-                    menu = subManu();
-                    break;
-                case 3:
-                    editing = true;
-                    student.create( editing );
-                    menu = subManu();
-                    break;
-                case 4:
-                    System.out.println("Please enter Student's ID ");
-                    id = scr.nextInt();
-                    scr.nextLine();
-                    student.update( id );
-                    menu = subManu();
-                    break;
-                case 5:
-                    System.out.println("please enter Student's ID");
-                    id = scr.nextInt();
-                    scr.nextLine();
-                    student.delete( id );
-                    menu = subManu();
-                    break;
-                case 6:
-                    menu = subManu();
-                    break;
-            }
-        }
-
-    }
 }
 
 

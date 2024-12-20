@@ -8,10 +8,14 @@ public class Main {
     static ArrayList<Student> students = new ArrayList<Student>();
     static ArrayList<Coach> coaches = new ArrayList<Coach>();
     static ArrayList<Classe> classes = new ArrayList<Classe>();
+
     static boolean appRunning = true;
     static char mainManu = 'h';
     static int subManuChoice;
     static boolean editing;
+
+    // create object instances
+    static Student student = new Student();
 
 
     public static void main(String[] args) {
@@ -35,7 +39,7 @@ public class Main {
                         // show a list of students belong to this classe
                     break;
                 case 's': // enter student room
-                    student.studentFunc( mainManu );
+                    studentFunc();
                     // show the list of CRUD students
                     break;
                 case 'f': // enter coach room
@@ -79,173 +83,11 @@ public class Main {
         System.out.println("******************************************");
     }
 
-    static int subManu () {
-
-        try {
-            System.out.println("Please choose a number to select one CRUD operation (1,2,3,4,5)");
-            System.out.println("0 => Quite Student Menu");
-            System.out.println("1 => List all Students");
-            System.out.println("2 => Show a single Student");
-            System.out.println("3 => Add a Student");
-            System.out.println("4 => Update a Student");
-            System.out.println("5 => Delete a Student");
-            subManuChoice = scr.nextInt();
-            scr.nextLine();
-            while (subManuChoice != 1 && subManuChoice != 2 && subManuChoice != 3 && subManuChoice != 4 && subManuChoice != 5 && subManuChoice != 0 ) {
-                System.out.println("Unkown manu Type, please choose from the menu (1,2,3,4,5)");
-                subManuChoice = scr.nextInt();
-                scr.nextLine();
-            }
-            return subManuChoice;
-        }
-        catch ( InputMismatchException e ) {
-            System.out.println("please enter valid number");
-            scr.nextLine();
-            return 6;
-        }
-    }
-
-    // CRUD Functions
-    // Student
-    static public void addStudent () {
-        editing = true;
-        while (editing) {
-            System.out.println("Enter student's first name ");
-            String firstName = scr.nextLine();
-            if (firstName.equals("quite")) {
-                System.out.println("stopped editing");
-                editing = false;
-            } else {
-                System.out.println("Enter student's last name ");
-                String lastName = scr.nextLine();
-                if (lastName.equals("quite")) {
-                    System.out.println("stopped editing");
-                    editing = false;
-                } else {
-                    System.out.println("Enter student's email ");
-                    String email = scr.nextLine();
-                    if (email.equals("quite")) {
-                        System.out.println("stopped editing");
-                        editing = false;
-                    } else {
-                        // create a new student
-                        Student student = new Student(firstName, lastName, email);
-                        // add student to the list
-                        students.add(student);
-                    }
-                }
-            }
-        }
-    }
-
-    static void showStudents () {
-        showHeader("All Students");
-        if ( students.size() == 0) {
-            System.out.println("No Students, Yet");
-        } else {
-            for ( Student student : students) {
-                System.out.println("Fullname: " + student.firstName + " " + student.lastName );
-                System.out.println("Email: " + student.email );
-                System.out.println();
-            }
-        }
-        System.out.println("==============================================");
-        System.out.println("==============================================");
-    }
-
-    static void showSingleStudent () {
-        try {
-            // show single student by id or by name
-            System.out.println("search by by ID or by NAME");
-            System.out.println("1. Search by ID");
-            System.out.println("2. Search by NAME");
-            int search = scr.nextInt();
-            scr.nextLine();
-            if ( search == 1) {
-                // search by ID
-                System.out.println("Enter student's ID");
-                int id = scr.nextInt();
-                scr.nextLine();
-                for ( Student student : students ) {
-                   if (student.id == id) {
-                       System.out.println("Fullname: " + student.firstName + " " + student.lastName );
-                       System.out.println("Email: " + student.email );
-                       System.out.println();
-                   }
-                }
-            }
-            if ( search == 2) {
-                // search by NAME
-                System.out.println("Enter student's NAME");
-                String name = scr.nextLine();
-                for ( Student student : students ) {
-                    if (student.firstName.equals( name ) || student.lastName.equals( name ) ) {
-                        System.out.println("Fullname: " + student.firstName + " " + student.lastName );
-                        System.out.println("Email: " + student.email );
-                        System.out.println();
-                    } else {
-                        System.out.println("NO Student with this name !!");
-                    }
-                }
-            }
-        }
-        catch ( InputMismatchException e ) {
-            scr.nextLine();
-            showSingleStudent();
-        }
-    }
-
-    // update a student
-    static void updateStudent( int id ) {
-        // get student index
-        Student student = null;
-
-        for ( int i = 0; i < students.size(); i++ ) {
-            if (students.get(i).id == id) {
-                student = students.get(i);
-                break;
-            }
-        }
-
-        if ( student != null ) {
-            System.out.println("Enter First Name :");
-            String firstName = scr.nextLine();
-            System.out.println("Enter Last Name :");
-            String lastName = scr.nextLine();
-            System.out.println("Enter Email :");
-            String email = scr.nextLine();
-            // update here
-            student.firstName = firstName.length() == 0 ? student.firstName : firstName;
-            student.lastName = lastName.length() == 0  ? student.lastName : lastName;
-            student.email = email.length() == 0 ? student.email : email;
-        } else {
-            System.out.println("this ID does not Exists");
-        }
-        // TRY TO APPLY BINARY SEARCH
-    }
-
-    // delete student
-    static void deleteStudent ( int id ) {
-        int studentID = 0;
-        for ( int i = 0; i < students.size(); i++ ) {
-            if (students.get(i).id == id) {
-                studentID = students.indexOf(students.get(i));
-                break;
-            }
-        }
-        System.out.println("deleting student...");
-        System.out.println("deleting the student with the index of " + studentID );
-        students.remove(studentID);
-        System.out.println("student deleted!!");
-    }
-
     // Create functionalities for student
     static void studentFunc () {
-        int menu = subManu();
+        int menu = student.subManu();
         boolean subManuRunning = true;
         int id;
-
-        Student student = new Student();
 
         while (subManuRunning) {
             switch (menu) {
@@ -256,33 +98,33 @@ public class Main {
                     break;
                 case 1:
                     student.list();
-                    menu = subManu();
+                    menu = student.subManu();
                     break;
                 case 2:
                     student.show();
-                    menu = subManu();
+                    menu = student.subManu();
                     break;
                 case 3:
                     editing = true;
                     student.create( editing );
-                    menu = subManu();
+                    menu = student.subManu();
                     break;
                 case 4:
                     System.out.println("Please enter Student's ID ");
                     id = scr.nextInt();
                     scr.nextLine();
                     student.update( id );
-                    menu = subManu();
+                    menu = student.subManu();
                     break;
                 case 5:
                     System.out.println("please enter Student's ID");
                     id = scr.nextInt();
                     scr.nextLine();
                     student.delete( id );
-                    menu = subManu();
+                    menu = student.subManu();
                     break;
                 case 6:
-                    menu = subManu();
+                    menu = student.subManu();
                     break;
             }
         }
