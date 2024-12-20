@@ -154,7 +154,7 @@ public class Main {
                     break;
                 case 3:
                     editing = true;
-                    //coach.create( editing );
+                    coach.create( editing );
                     menu = coach.subManu();
                     break;
                 case 4:

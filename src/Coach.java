@@ -16,10 +16,10 @@ public class Coach extends Person {
 
     Scanner scr = new Scanner(System.in);
 
-    Coach (String firstName, String lastName, String email, String refClasse, double salary, String specialty ) {
+    Coach (String firstName, String lastName, String email, double salary, String specialty ) {
         super(firstName, lastName, email);
         this.id = count;
-        this.refClasse = refClasse;
+        //this.refClasse = refClasse;
         this.salary = salary;
         this.specialty = specialty;
         count++;
@@ -114,36 +114,62 @@ public class Coach extends Person {
         }
     }
 
-//    void create ( boolean editing ) {
-//        while (editing) {
-//            System.out.println("Enter student's first name ");
-//            String firstName = scr.nextLine();
-//            if (firstName.equals("quite")) {
-//                System.out.println("stopped editing");
-//                editing = false;
-//            } else {
-//                System.out.println("Enter student's last name ");
-//                String lastName = scr.nextLine();
-//                if (lastName.equals("quite")) {
-//                    System.out.println("stopped editing");
-//                    editing = false;
-//                } else {
-//                    System.out.println("Enter student's email ");
-//                    String email = scr.nextLine();
-//                    if (email.equals("quite")) {
-//                        System.out.println("stopped editing");
-//                        editing = false;
-//                    } else {
-//                        // create a new student
-//                        Student student = new Student(firstName, lastName, email);
-//                        // add student to the list
-//                        students.add(student);
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
+    void create ( boolean editing ) {
+        double salaryChecking = -1;
+        while (editing) {
+            System.out.println("Enter coach's first name ");
+            String firstName = scr.nextLine();
+            if (firstName.equals("quite")) {
+                System.out.println("stopped editing");
+                editing = false;
+            } else {
+                System.out.println("Enter coach's last name ");
+                String lastName = scr.nextLine();
+                if (lastName.equals("quite")) {
+                    System.out.println("stopped editing");
+                    editing = false;
+                } else {
+                    System.out.println("Enter email's email ");
+                    String email = scr.nextLine();
+                    if (email.equals("quite")) {
+                        System.out.println("stopped editing");
+                        editing = false;
+                    } else {
+                        System.out.println("Enter coach's specialty ");
+                        String spechialty = scr.nextLine();
+                        if ( spechialty.equals("quite") ) {
+                            System.out.println("stopped editing");
+                            editing = false;
+                        } else {
+                            while ( salaryChecking <= 0 ) {
+                                try{
+                                    System.out.println("Enter coach's salary ");
+                                    double salary = scr.nextDouble();
+                                    scr.nextLine();
+                                    if ( salary == 0 ) {
+                                        System.out.println("stopped editing");
+                                        editing = false;
+                                        break;
+                                    } else {
+                                        // create a new coach
+                                        Coach coach = new Coach(firstName, lastName, email, salary, spechialty);
+                                        // add coach to the list
+                                        coaches.add(coach);
+                                        break;
+                                    }
+                                }
+                                catch ( InputMismatchException e ) {
+                                    System.out.println("please enter a valid double");
+                                    scr.nextLine();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 //    void update ( int studenId) {
 //        // get student index
 //        Student student = null;
